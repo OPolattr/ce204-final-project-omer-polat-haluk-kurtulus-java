@@ -344,6 +344,13 @@ ALTER TABLE `discussion_forum` ADD CONSTRAINT `fk_discussionforum_member_member_
 ALTER TABLE `topic` ADD CONSTRAINT `fk_topic_discussion_forum_member_member_id` FOREIGN KEY (`discussion_forum_member_member_id`) REFERENCES `discussion_forum`(`member_member_id`);
 ```
 
+# Figma
+
+Before starting with the design using Java Swing, these are the designs I made on Figma. You can find the image below.
+
+![]![figma](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/e6d76da9-a153-40a1-83fa-8bb33ac11f78)
+
+
 # Overview
 
 You will generate eclipse maven project with Junit4 from CLI and. Also you will generate jar and then you will run your application. For more information you can check examples [Maven – Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) and [TheNEXUS | A Community Project](https://books.sonatype.com/mvnref-book/reference/index.html)
