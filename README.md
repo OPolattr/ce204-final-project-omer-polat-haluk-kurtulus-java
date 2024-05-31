@@ -118,7 +118,7 @@ class Follower {
   String memberId;
   Date creationDate;
 }
-
+```
 
 # Overview
 
