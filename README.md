@@ -1,5 +1,125 @@
 # eclipse-java-maven-template
 
+# Member Management System
+
+I have created the implementation using Umple codes on Umple Online, tailored to my specific needs. Below you can find the Umple Online code and its design.
+
+```umple
+class MemberManagement {
+  1 -- * AuthenticationManager authManager;
+  1 -- * Member members;
+
+  void addMember(Member member) {}
+  void updateMemberDetails(Member member) {}
+  void deleteMember(String memberId) {}
+  Member viewMemberProfile(String memberId) {}
+}
+
+class AuthenticationManager {
+  1 -- * UserCredential userCredentials;
+  boolean login(String username, String password) {}
+  void logout(String username) {}
+  boolean register(String username, String password) {}
+  boolean changePassword(String username, String oldPassword, String newPassword) {}
+}
+
+class UserCredential {
+  String username;
+  String password;
+}
+
+class Member {
+  String memberId;
+  String name;
+  String email;
+  String readingPreferences;
+  1 -- * ReadingSchedule readingSchedule;
+  1 -- * MeetingPlanner meetingPlanner;
+  1 -- * DiscussionForum discussionForum;
+
+  void updateProfile(String name, String email, String readingPreferences) {}
+}
+
+class ReadingSchedule {
+  1 -- * ReadingEntry readingEntries;
+
+  void organizeReadingSchedule(ReadingEntry readingEntry) {}
+  List<ReadingEntry> trackReadingProgress(String memberId) {}
+  void setReadingReminders(String memberId, Date reminderDate) {}
+}
+
+class ReadingEntry {
+  String bookTitle;
+  Date startDate;
+  Date endDate;
+  String progress;
+  void updateProgress(String progress) {}
+}
+
+class MeetingPlanner {
+  1 -- * Meeting meetings;
+
+  void scheduleMeeting(Meeting meeting) {}
+  void manageMeetings(String memberId) {}
+  void rsvpForMeeting(String memberId, String meetingId) {}
+}
+
+class Meeting {
+  String meetingId;
+  Date date;
+  String time;
+  String location;
+  String agenda;
+
+  void updateMeetingDetails(Date date, String time, String location, String agenda) {}
+  void addAttendee(String memberId) {}
+}
+
+class DiscussionForum {
+  1 -- * Topic topics;
+
+  void postTopic(Topic topic) {}
+  void respondToPost(String topicId, String memberId, Response response) {}
+  void likeComment(String topicId, String memberId, Like like) {}
+  void followTopic(String topicId, String memberId, Follower follower) {}
+}
+
+class Topic {
+  String topicId;
+  String title;
+  String content;
+  String authorId;
+  Date creationDate;
+  0..* -- * Response responses;
+  0..* -- * Like likes;
+  0..* -- * Follower followers;
+
+  void updateContent(String content) {}
+  void addResponse(Response response) {}
+  void addLike(Like like) {}
+  void addFollower(Follower follower) {}
+}
+
+class Response {
+  String responseId;
+  String content;
+  String memberId;
+  Date creationDate;
+}
+
+class Like {
+  String likeId;
+  String memberId;
+  Date creationDate;
+}
+
+class Follower {
+  String followerId;
+  String memberId;
+  Date creationDate;
+}
+
+
 # Overview
 
 You will generate eclipse maven project with Junit4 from CLI and. Also you will generate jar and then you will run your application. For more information you can check examples [Maven – Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) and [TheNEXUS | A Community Project](https://books.sonatype.com/mvnref-book/reference/index.html)
