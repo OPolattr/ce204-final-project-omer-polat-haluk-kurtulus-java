@@ -121,13 +121,228 @@ class Follower {
 ![]![umpleyapı](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/d598d9e4-b98e-4223-a11f-e90a139ca5c2)
 
 
-# structure
+# Project Structure
+
 As a result of this structure generated from Umple Online, Java codes were generated. I added these codes to my project. Then, I applied the Wrapper process to all the Java code I generated from Umple Online. Below you will find the project structure.
 
 ![]![eclipseyapi1](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/3ea2dc4d-eb8f-4d88-81d3-1fb245defd81)
 
 ![]![eclipseyapi2](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/d181f29e-ae41-44b4-8a1f-5a423b4fc65e)
 
+# PlantUML Diagram
+
+The codes generated from Umple Online have all been wrapped. The structure has been modularized according to the assignment requirements. Below is the PlantUML diagram of the entire structure after assembling all the components.
+
+![]![plantUML1](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/1753fc7e-56ef-4621-b292-8419c4321479)
+
+![]![plantUML2](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/6abf4033-d7fb-466b-8f5d-faeea62da94f)
+
+
+# Database
+
+As a result of the entire project, the database is now operational and capable of performing all necessary operations. Below is an image of the database.
+
+![]![database](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/c483ce39-4130-4a47-a072-3318ac88fa56)
+
+The database was created based on the model.sql generated from Umple Online. You can review the Model.sql code below.
+
+```
+-- PLEASE DO NOT EDIT THIS CODE
+-- This code was generated using the UMPLE 1.33.0.6934.a386b0a58 modeling language!
+
+CREATE TABLE IF NOT EXISTS `member_management`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+    PRIMARY KEY(/*No Possible Primary Key*/)
+
+);
+
+CREATE TABLE IF NOT EXISTS `authentication_manager`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+    PRIMARY KEY(/*No Possible Primary Key*/)
+
+);
+
+CREATE TABLE IF NOT EXISTS `user_credential`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+  
+  /*user_credential Attributes*/
+  username VARCHAR(255),
+  password VARCHAR(255),
+  PRIMARY KEY(username)
+
+);
+
+CREATE TABLE IF NOT EXISTS `member`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+  
+  /*member Attributes*/
+  member_id VARCHAR(255),
+  name VARCHAR(255),
+  email VARCHAR(255),
+  reading_preferences VARCHAR(255),
+  PRIMARY KEY(member_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `reading_schedule`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+
+  /*reading_schedule Associations*/
+  member_member_id VARCHAR(255),
+    PRIMARY KEY(member_member_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `reading_entry`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+
+  /*reading_entry Associations*/
+  reading_schedule_member_member_id VARCHAR(255),
+  
+  /*reading_entry Attributes*/
+  book_title VARCHAR(255),
+  start_date DATE,
+  end_date DATE,
+  progress VARCHAR(255),
+  PRIMARY KEY(book_title)
+
+);
+
+CREATE TABLE IF NOT EXISTS `meeting_planner`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+
+  /*meeting_planner Associations*/
+  member_member_id VARCHAR(255),
+    PRIMARY KEY(member_member_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `meeting`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+
+  /*meeting Associations*/
+  meeting_planner_member_member_id VARCHAR(255),
+  
+  /*meeting Attributes*/
+  meeting_id VARCHAR(255),
+  date DATE,
+  time VARCHAR(255),
+  location VARCHAR(255),
+  agenda VARCHAR(255),
+  PRIMARY KEY(meeting_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `discussion_forum`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+
+  /*discussion_forum Associations*/
+  member_member_id VARCHAR(255),
+    PRIMARY KEY(member_member_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `topic`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+
+  /*topic Associations*/
+  discussion_forum_member_member_id VARCHAR(255),
+  
+  /*topic Attributes*/
+  topic_id VARCHAR(255),
+  title VARCHAR(255),
+  content VARCHAR(255),
+  author_id VARCHAR(255),
+  creation_date DATE,
+  PRIMARY KEY(topic_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `response`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+  
+  /*response Attributes*/
+  response_id VARCHAR(255),
+  content VARCHAR(255),
+  member_id VARCHAR(255),
+  creation_date DATE,
+  PRIMARY KEY(response_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `like`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+  
+  /*like Attributes*/
+  like_id VARCHAR(255),
+  member_id VARCHAR(255),
+  creation_date DATE,
+  PRIMARY KEY(like_id)
+
+);
+
+CREATE TABLE IF NOT EXISTS `follower`
+(
+  /*------------------------*/
+  /* MEMBER VARIABLES       */
+  /*------------------------*/
+  
+  /*follower Attributes*/
+  follower_id VARCHAR(255),
+  member_id VARCHAR(255),
+  creation_date DATE,
+  PRIMARY KEY(follower_id)
+
+);
+
+ALTER TABLE `reading_schedule` ADD CONSTRAINT `fk_readingschedule_member_member_id` FOREIGN KEY (`member_member_id`) REFERENCES `member`(`member_id`);
+
+ALTER TABLE `reading_entry` ADD CONSTRAINT `fk_readingentry_reading_schedule_member_member_id` FOREIGN KEY (`reading_schedule_member_member_id`) REFERENCES `reading_schedule`(`member_member_id`);
+
+ALTER TABLE `meeting_planner` ADD CONSTRAINT `fk_meetingplanner_member_member_id` FOREIGN KEY (`member_member_id`) REFERENCES `member`(`member_id`);
+
+ALTER TABLE `meeting` ADD CONSTRAINT `fk_meeting_meeting_planner_member_member_id` FOREIGN KEY (`meeting_planner_member_member_id`) REFERENCES `meeting_planner`(`member_member_id`);
+
+ALTER TABLE `discussion_forum` ADD CONSTRAINT `fk_discussionforum_member_member_id` FOREIGN KEY (`member_member_id`) REFERENCES `member`(`member_id`);
+
+ALTER TABLE `topic` ADD CONSTRAINT `fk_topic_discussion_forum_member_member_id` FOREIGN KEY (`discussion_forum_member_member_id`) REFERENCES `discussion_forum`(`member_member_id`);
+```
 
 # Overview
 
