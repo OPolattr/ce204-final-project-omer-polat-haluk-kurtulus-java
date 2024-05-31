@@ -1,6 +1,5 @@
-# eclipse-java-maven-template
+# Book Club Management System
 
-# Member Management System
 
 I have created the implementation using Umple codes on Umple Online, tailored to my specific needs. Below you can find the Umple Online code and its design.
 
@@ -119,6 +118,16 @@ class Follower {
   Date creationDate;
 }
 ```
+![]![umpleyapı](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/d598d9e4-b98e-4223-a11f-e90a139ca5c2)
+
+
+# structure
+As a result of this structure generated from Umple Online, Java codes were generated. I added these codes to my project. Then, I applied the Wrapper process to all the Java code I generated from Umple Online. Below you will find the project structure.
+
+![]![eclipseyapi1](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/3ea2dc4d-eb8f-4d88-81d3-1fb245defd81)
+
+![]![eclipseyapi2](https://github.com/OPolattr/ce205-final-project-omer-polat-java/assets/153085597/d181f29e-ae41-44b4-8a1f-5a423b4fc65e)
+
 
 # Overview
 
